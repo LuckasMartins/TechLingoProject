@@ -13,33 +13,6 @@
         <!-- Header com o nome do curso e ícone da aula -->
 
 
-        <LinearLayout
-            android:id="@+id/footerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:layout_alignParentBottom="true"
-            android:background="#469FD1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <!-- Imagem do logotipo -->
-            <ImageView
-                android:id="@+id/imageViewFooter"
-                android:layout_width="68dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/logo" />
-
-            <!-- Texto "Bem-vindo ao TECHLINGO" -->
-            <TextView
-                android:layout_width="326dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/abril_fatface"
-                android:padding="16dp"
-                android:text="TECHLINGO"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-        </LinearLayout>
-
         <TextView
             android:id="@+id/textView5"
             android:layout_width="136dp"
@@ -148,15 +121,15 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="186dp"
+            android:layout_height="116dp"
             android:layout_above="@+id/btnNoAccount2"
             android:layout_below="@+id/textView5"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginEnd="19dp"
-            android:layout_marginBottom="74dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="67dp"
             android:orientation="vertical">
 
             <RadioButton
@@ -180,17 +153,17 @@
 
         <Button
             android:id="@+id/btnNoAccount2"
-            android:layout_width="147dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="126dp"
-            android:layout_marginEnd="138dp"
-            android:layout_marginBottom="101dp"
+            android:layout_marginStart="67dp"
+            android:layout_marginEnd="75dp"
+            android:layout_marginBottom="19dp"
             android:background="@drawable/botaonaotemconta"
-            android:backgroundTint="#97D3F4"
-            android:text="Aula 2" />
+            android:backgroundTint="#67BAE8"
+            android:text="Não tem conta?" />
 
 
     </RelativeLayout>

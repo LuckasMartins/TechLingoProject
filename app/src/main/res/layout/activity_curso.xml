@@ -4,14 +4,99 @@
     android:layout_height="match_parent">
 
 
+    <LinearLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_alignParentBottom="true"
+        android:background="#469FD1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Imagem do logotipo -->
+        <ImageView
+            android:id="@+id/imageViewFooter"
+            android:layout_width="68dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo" />
+
+        <!-- Texto "Bem-vindo ao TECHLINGO" -->
+        <TextView
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:padding="16dp"
+            android:text="TECHLINGO"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/textView14"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="294dp"
+        android:background="@drawable/listacursos"
+        android:fontFamily="@font/baloo"
+        android:gravity="center_vertical"
+        android:paddingEnd="16dp"
+        android:text="    Aula 03"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/textView15"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="451dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="232dp"
+        android:background="@drawable/listacursos"
+        android:fontFamily="@font/baloo"
+        android:gravity="center_vertical"
+        android:paddingEnd="16dp"
+        android:text="    Aula 04"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/textView12"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="351dp"
+        android:background="@drawable/listacursos"
+        android:fontFamily="@font/baloo"
+        android:gravity="center_vertical"
+        android:paddingEnd="16dp"
+        android:text="    Aula 02"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:layout_width="269dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="112dp"
-        android:layout_marginBottom="532dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="531dp"
         android:fontFamily="@font/baloo"
         android:text="Complete/Incomplete/In Progress"
         android:textColor="#000000" />
@@ -23,9 +108,9 @@
         android:layout_above="@+id/textView6"
         android:layout_below="@+id/headerLayout"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginBottom="31dp"
         android:fontFamily="@font/baloo"
         android:text="dd/mm/yyyy"
         android:textColor="#000000" />
@@ -86,6 +171,29 @@
         android:fontFamily="@font/baloo"
         android:text="Status:"
         android:textColor="#000000" />
+
+
+    <!-- Repetir o botão de aula mais quatro vezes para criar os outros botões -->
+
+    <Button
+        android:id="@+id/textView13"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="269dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="414dp"
+        android:background="@drawable/listacursos"
+        android:fontFamily="@font/baloo"
+        android:gravity="center_vertical"
+        android:paddingEnd="16dp"
+        android:text="    Aula 01"
+        android:textColor="#000000"
+        android:textSize="20dp" />
 
 
 </RelativeLayout>

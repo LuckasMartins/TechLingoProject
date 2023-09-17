@@ -4,7 +4,7 @@
     <style name="teste">
         <item name="android:layout_width">272dp</item>
         <item name="android:layout_height">82dp</item>
-        <item name="android:layout_below">@id/etUsername</item>
+        <item name="android:layout_below">@id/txtEmail</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_alignParentEnd">true</item>
         <item name="android:layout_marginStart">147dp</item>

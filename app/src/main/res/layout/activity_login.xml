@@ -51,7 +51,7 @@
             <!-- Botão "Não tem conta?" -->
 
             <EditText
-                android:id="@+id/etUsername"
+                android:id="@+id/txtEmail"
                 android:layout_width="352dp"
                 android:layout_height="76dp"
                 android:layout_below="@+id/imageView4"
@@ -64,11 +64,11 @@
                 android:hint="       Nome de usuário" />
 
             <EditText
-                android:id="@+id/etPassword"
+                android:id="@+id/txtSenha"
                 style="@style/teste"
                 android:layout_width="352dp"
                 android:layout_height="76dp"
-                android:layout_below="@+id/etUsername"
+                android:layout_below="@+id/txtEmail"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="68dp"
@@ -80,7 +80,7 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="189dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etPassword"
+                android:layout_below="@+id/txtSenha"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="108dp"

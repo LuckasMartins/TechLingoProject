@@ -61,7 +61,8 @@
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="58dp"
                 android:background="@drawable/edittext_border"
-                android:hint="       Nome de usuário" />
+                android:hint="       Nome de usuário"
+                android:singleLine="true" />
 
             <EditText
                 android:id="@+id/txtSenha"
@@ -74,7 +75,8 @@
                 android:layout_marginStart="68dp"
                 android:layout_marginTop="27dp"
                 android:layout_marginEnd="58dp"
-                android:hint="   Senha" />
+                android:hint="   Senha"
+                android:singleLine="true"/>
 
             <Button
                 android:id="@+id/btnLogin"

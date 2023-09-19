@@ -6,33 +6,35 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import br.com.techlingo.DTO.AbrirAulaRequestBody
 import br.com.techlingo.DTO.AbrirAulaResponseBody
-import br.com.techlingo.DTO.AbrirCursoResponseBody
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class CursosActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_curso);
 
-        // Defina a URL base do seu servidor
+        // Define a URL base do seu servidor
         // 10.0.2.2 é o localhost dentro do emulador android
         // Também deve ser adicionado AndroidManifest.xml -> <uses-permission android:name="android.permission.INTERNET" />
         // Também é necessário criar a classe ApiService.kt
         // para que o Retrofit possa fazer a solicitação HTTP
         // pelos metodos criados na interface
 
-        // obtenha a 'api_baseurl' do arquivo 'strings.xml'
+        // obtem a 'api_baseurl' do arquivo 'strings.xml'
         val baseUrl = getString(R.string.api_baseurl)
 
-        // Crie uma instância Retrofit
+        // Cria uma instância Retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
@@ -81,19 +83,45 @@ class CursosActivity : ComponentActivity() {
         val st_aula2 = findViewById(R.id.txt_status_aula2) as TextView
         val st_aula3 = findViewById(R.id.txt_status_aula3) as TextView
         val st_aula4 = findViewById(R.id.txt_status_aula4) as TextView
+        val icone_aula = findViewById(R.id.iconeAula) as ImageView
+
+
+
+
+        when (nm_curso) {
+            "Back-End" -> {
+                icone_aula.setImageResource(R.drawable.backend);
+            }
+            "Front-End" -> {
+                icone_aula.setImageResource(R.drawable.front_end_img);
+            }
+            "Database" -> {
+                icone_aula.setImageResource(R.drawable.database_img);
+            }
+            "Lógica de Programação" -> {
+                icone_aula.setImageResource(R.drawable.logica);
+            }
+            "Cloud Computing" -> {
+                icone_aula.setImageResource(R.drawable.cloud);
+            }
+            else -> {
+                icone_aula.setImageResource(R.drawable.backend);
+            }
+        }
 
         btn_aula1.isEnabled = false;
         btn_aula2.isEnabled = false;
         btn_aula3.isEnabled = false;
         btn_aula4.isEnabled = false;
 
+
+
         try {
-            if (!lista_aulas[0].isNullOrBlank()) {
+            if (!lista_aulas.isEmpty()) {
                 btn_aula1.isEnabled = true
                 val aula = lista_aulas[0].split("=")
                 btn_aula1.text = "   " + aula[0]
                 st_aula1.text = aula[1]
-                Log.i("aula",aula[1])
                 mudarCorStatus(aula[1], st_aula1)
             }
         } catch (e: Exception) {
@@ -102,7 +130,7 @@ class CursosActivity : ComponentActivity() {
                 st_aula1.text = "Indisponível"
             } else {
                 btn_aula1.isEnabled = true
-                btn_aula1.text = "   Aula 1"
+                btn_aula1.text = "   Aula 01"
                 st_aula1.text = "Não iniciado"
                 mudarCorStatus("", st_aula1)
             }
@@ -171,7 +199,6 @@ class CursosActivity : ComponentActivity() {
         btn_aula1.setOnClickListener{
             val abrirAulaRequestBody = AbrirAulaRequestBody(email, senha, nm_curso, 1)
 
-            // Faça a solicitação de login
             val call = apiService.abrirAula(abrirAulaRequestBody)
 
             call.enqueue(object : Callback<AbrirAulaResponseBody> {
@@ -182,14 +209,14 @@ class CursosActivity : ComponentActivity() {
                         Log.i("Resposta",response.body().toString())
 
                         if (responseBody != null) {
-                            Toast.makeText(
-                                this@CursosActivity,
-                                "Aula aberta com sucesso",
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this@CursosActivity,
+//                                "Aula aberta com sucesso",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
                         }
 
-                        salvarPref(responseBody!!)
+                        salvarPref(responseBody!!,1, qtd_aulas)
                         avancarTela()
                     } else {
                         Toast.makeText(
@@ -214,7 +241,6 @@ class CursosActivity : ComponentActivity() {
         btn_aula2.setOnClickListener{
             val abrirAulaRequestBody = AbrirAulaRequestBody(email, senha, nm_curso, 2)
 
-            // Faça a solicitação de login
             val call = apiService.abrirAula(abrirAulaRequestBody)
 
             call.enqueue(object : Callback<AbrirAulaResponseBody> {
@@ -225,14 +251,14 @@ class CursosActivity : ComponentActivity() {
                         Log.i("Resposta",response.body().toString())
 
                         if (responseBody != null) {
-                            Toast.makeText(
-                                this@CursosActivity,
-                                "Aula aberta com sucesso",
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this@CursosActivity,
+//                                "Aula aberta com sucesso",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
                         }
 
-                        salvarPref(responseBody!!)
+                        salvarPref(responseBody!!,2, qtd_aulas)
                         avancarTela()
                     } else {
                         Toast.makeText(
@@ -258,7 +284,6 @@ class CursosActivity : ComponentActivity() {
         btn_aula3.setOnClickListener{
             val abrirAulaRequestBody = AbrirAulaRequestBody(email, senha, nm_curso, 3)
 
-            // Faça a solicitação de login
             val call = apiService.abrirAula(abrirAulaRequestBody)
 
             call.enqueue(object : Callback<AbrirAulaResponseBody> {
@@ -269,14 +294,14 @@ class CursosActivity : ComponentActivity() {
                         Log.i("Resposta",response.body().toString())
 
                         if (responseBody != null) {
-                            Toast.makeText(
-                                this@CursosActivity,
-                                "Aula aberta com sucesso",
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this@CursosActivity,
+//                                "Aula aberta com sucesso",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
                         }
 
-                        salvarPref(responseBody!!)
+                        salvarPref(responseBody!!,3, qtd_aulas)
                         avancarTela()
                     } else {
                         Toast.makeText(
@@ -301,7 +326,6 @@ class CursosActivity : ComponentActivity() {
         btn_aula4.setOnClickListener{
             val abrirAulaRequestBody = AbrirAulaRequestBody(email, senha, nm_curso, 4)
 
-            // Faça a solicitação de login
             val call = apiService.abrirAula(abrirAulaRequestBody)
 
             call.enqueue(object : Callback<AbrirAulaResponseBody> {
@@ -312,14 +336,14 @@ class CursosActivity : ComponentActivity() {
                         Log.i("Resposta",response.body().toString())
 
                         if (responseBody != null) {
-                            Toast.makeText(
-                                this@CursosActivity,
-                                "Aula aberta com sucesso",
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this@CursosActivity,
+//                                "Aula aberta com sucesso",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
                         }
 
-                        salvarPref(responseBody!!)
+                        salvarPref(responseBody!!,4, qtd_aulas)
                         avancarTela()
                     } else {
                         Toast.makeText(
@@ -346,6 +370,11 @@ class CursosActivity : ComponentActivity() {
 
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        finish()
+    }
+
 
     private fun mudarCorStatus(st_status:String, txt:TextView) {
         when (st_status) {
@@ -361,7 +390,7 @@ class CursosActivity : ComponentActivity() {
         }
     }
 
-    private fun salvarPref(aula:AbrirAulaResponseBody){
+    private fun salvarPref(aula:AbrirAulaResponseBody, nr_aula:Int, qtd_aulas:Int){
         val sharedPreferences = getSharedPreferences(getString(R.string.preferencias), Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
@@ -373,6 +402,8 @@ class CursosActivity : ComponentActivity() {
         editor.putString("aula_ds_pergunta2", aula.ds_pergunta2)
         editor.putString("aula_ds_pergunta3", aula.ds_pergunta3)
         editor.putString("aula_ds_resposta", aula.ds_resposta)
+        editor.putInt("nr_aula", nr_aula?:0)
+        editor.putInt("qtd_aulas", qtd_aulas?:0)
         editor.apply()
 
     }

@@ -8,17 +8,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import br.com.techlingo.DTO.AbrirCursoRequestBody
 import br.com.techlingo.DTO.AbrirCursoResponseBody
-import br.com.techlingo.ui.theme.TechLingoTheme
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,17 +19,17 @@ class ListaCursosActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_course);
 
-        // Defina a URL base do seu servidor
+        // Define a URL base do seu servidor
         // 10.0.2.2 é o localhost dentro do emulador android
         // Também deve ser adicionado AndroidManifest.xml -> <uses-permission android:name="android.permission.INTERNET" />
         // Também é necessário criar a classe ApiService.kt
         // para que o Retrofit possa fazer a solicitação HTTP
         // pelos metodos criados na interface
 
-        // obtenha a 'api_baseurl' do arquivo 'strings.xml'
+        // obtem a 'api_baseurl' do arquivo 'strings.xml'
         val baseUrl = getString(R.string.api_baseurl)
 
-        // Crie uma instância Retrofit
+        // Cria uma instância Retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
@@ -62,7 +53,6 @@ class ListaCursosActivity : ComponentActivity() {
 
             val abrirCursoRequestBody = AbrirCursoRequestBody(email, senha, nm_curso)
 
-            // Faça a solicitação de login
             val call = apiService.abrirCurso(abrirCursoRequestBody)
             call.enqueue(object : Callback<AbrirCursoResponseBody> {
                 override fun onResponse(
@@ -72,11 +62,11 @@ class ListaCursosActivity : ComponentActivity() {
                         Log.i("Resposta",response.body().toString())
 
                         if (responseBody != null) {
-                            Toast.makeText(
-                                this@ListaCursosActivity,
-                                "Curso aberto com sucesso",
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this@ListaCursosActivity,
+//                                "Curso aberto com sucesso",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
                         }
 
                         salvarPref(nm_curso, responseBody)
@@ -96,7 +86,7 @@ class ListaCursosActivity : ComponentActivity() {
                     val errorMessage = "Falha no request. Verifique a conexão com a internet."
                     Toast.makeText(this@ListaCursosActivity, errorMessage, Toast.LENGTH_SHORT).show()
 
-                    // Log do erro no console(logcat)s
+                    // Log do erro no console(logcat)
                     Log.e("API Request Error", errorMessage, t)
                 }
             })
@@ -109,7 +99,6 @@ class ListaCursosActivity : ComponentActivity() {
 
             val abrirCursoRequestBody = AbrirCursoRequestBody(email, senha, nm_curso)
 
-            // Faça a solicitação de login
             val call = apiService.abrirCurso(abrirCursoRequestBody)
             call.enqueue(object : Callback<AbrirCursoResponseBody> {
                 override fun onResponse(
@@ -155,7 +144,6 @@ class ListaCursosActivity : ComponentActivity() {
 
             val abrirCursoRequestBody = AbrirCursoRequestBody(email, senha, nm_curso)
 
-            // Faça a solicitação de login
             val call = apiService.abrirCurso(abrirCursoRequestBody)
             call.enqueue(object : Callback<AbrirCursoResponseBody> {
                 override fun onResponse(
@@ -202,7 +190,6 @@ class ListaCursosActivity : ComponentActivity() {
 
             val abrirCursoRequestBody = AbrirCursoRequestBody(email, senha, nm_curso)
 
-            // Faça a solicitação de login
             val call = apiService.abrirCurso(abrirCursoRequestBody)
             call.enqueue(object : Callback<AbrirCursoResponseBody> {
                 override fun onResponse(

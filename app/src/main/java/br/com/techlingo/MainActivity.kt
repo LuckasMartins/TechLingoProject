@@ -25,17 +25,17 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_login)
 
 
-        // Defina a URL base do seu servidor
+        // Define a URL base do seu servidor
         // 10.0.2.2 é o localhost dentro do emulador android
         // Também deve ser adicionado AndroidManifest.xml -> <uses-permission android:name="android.permission.INTERNET" />
         // Também é necessário criar a classe ApiService.kt
         // para que o Retrofit possa fazer a solicitação HTTP
         // pelos metodos criados na interface
 
-        // obtenha a 'api_baseurl' do arquivo 'strings.xml'
+        // obtem a 'api_baseurl' do arquivo 'strings.xml'
         val baseUrl = getString(R.string.api_baseurl)
 
-        // Crie uma instância Retrofit
+        // Cria uma instância Retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
@@ -48,24 +48,26 @@ class MainActivity : ComponentActivity() {
         val txt_email = findViewById(R.id.txtEmail) as EditText
         val txt_senha = findViewById(R.id.txtSenha) as EditText
 
-        btn_entrar.setOnClickListener{
-            //val email = txt_email.text.toString()
-            //val senha = txt_senha.text.toString()
-            val email = "email@email.com"
-            val senha = "123"
+        val btnNoAccount = findViewById(R.id.btnNoAccount) as Button
 
-            // Crie um objeto LoginRequestBody com os dados
+        btn_entrar.setOnClickListener{
+            val email = txt_email.text.toString()
+            val senha = txt_senha.text.toString()
+            //val email = "email@email.com"
+            //val senha = "123"
+
+            // Cria um objeto LoginRequestBody com os dados
             val loginRequestBody = LoginRequestBody(email, senha)
 
 
-            // Faça a solicitação de login
+            // Faz a solicitação de login
             val call = apiService.loginAluno(loginRequestBody)
 
 
             call.enqueue(object : Callback<Unit> {
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                     if (response.isSuccessful) {
-                        // Manipule a resposta bem-sucedida aqui
+                        // Manipula a resposta bem-sucedida aqui
                         //val apiResponse = response.body()
                         exibirMensagemDeSucesso()
 
@@ -76,7 +78,7 @@ class MainActivity : ComponentActivity() {
                         editor.putString("senha", senha)
                         editor.apply()
 
-                        // Inicie a ListaCursosActivity após o login
+                        // Inicia a ListaCursosActivity após o login
                         avancarTela()
 
                     } else {
@@ -92,22 +94,27 @@ class MainActivity : ComponentActivity() {
                     val errorMessage = "Falha no request. Verifique a conexão com a internet."
                     Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT).show()
 
-                    // Log do erro no console(logcat)s
+                    // Log do erro no console(logcat)
                     Log.e("API Request Error", errorMessage, t)
                 }
 
             })
         }
+
+        btnNoAccount.setOnClickListener{
+            val intent = Intent(this, CadastroActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+
 
     private fun exibirMensagemDeSucesso() {
         Toast.makeText(this, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
-        // Ou você pode usar qualquer outra forma de exibir uma mensagem de sucesso
     }
 
     private fun exibirMensagemDeErro() {
         Toast.makeText(this, "Email ou senha incorreto.", Toast.LENGTH_SHORT).show()
-        // Ou você pode usar qualquer outra forma de exibir uma mensagem de erro
     }
 
 
